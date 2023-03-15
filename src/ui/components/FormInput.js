@@ -1,16 +1,14 @@
-import React from 'react'
+import React from "react";
 
-const FormInput = ({labelText,value,onChange}) => {
-
+const FormInput = ({ labelText, value, onChange }) => {
   return (
-    <label htmlFor="">
-    {labelText}:
-    <input
-      value={value || ""}
-      onChange={onChange}
-    />
-  </label>
-  )
-}
+    <div>
+      <label htmlFor="">
+        {labelText}:
+        <input value={value || ""} onChange={onChange} />
+      </label>
+    </div>
+  );
+};
 
-export default FormInput
+export default FormInput;

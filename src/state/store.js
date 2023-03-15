@@ -1,8 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit'
-import quizCreation from './quizCreation'
+import { configureStore } from "@reduxjs/toolkit";
+import quizCreation from "./quizCreation";
 
-export default configureStore({
+const store = configureStore({
   reducer: {
-    quizCreation: quizCreation
+    quizCreation: quizCreation,
   },
-})
+});
+
+export default store;
