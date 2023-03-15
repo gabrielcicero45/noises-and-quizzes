@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  questionRemoved,
   questionTitleChanged,
   questionTypeChanged,
 } from "../../state/quizCreation";
@@ -38,13 +39,18 @@ const Question = ({ id, title, type }) => {
             labelText={"Question Type"}
             value={quizQuestions[id].type}
             onChange={(e) =>
-              dispatch(questionTypeChanged({ questionId: id, type: e.target.value }))
+              dispatch(
+                questionTypeChanged({ questionId: id, type: e.target.value })
+              )
             }
           />
         </>
       )}
       {!changeQuestionType && (
         <button onClick={() => setChangeQuestionType(true)}>Edit</button>
+      )}
+      {!changeQuestionType && (
+        <button onClick={() => dispatch(questionRemoved(id))}>Remove</button>
       )}
       {changeQuestionType && (
         <button onClick={() => setChangeQuestionType(false)}>Confirm</button>
