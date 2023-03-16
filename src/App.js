@@ -2,11 +2,11 @@ import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
   quizCreationStarted,
-} from "./state/quizCreation";
+} from "./state/actions/quizActions";
 import Quiz from "./ui/components/Quiz";
 
 function App() {
-  const creationStarted = useSelector((state) => state.quizCreation.value);
+  const creationStarted = useSelector((state) => state.quizReducer.quizCreation);
   const dispatch = useDispatch();
 
   return (

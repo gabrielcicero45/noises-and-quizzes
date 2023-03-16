@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import quizCreation from './quizCreation'
+import { quizReducer } from './reducers/quizReducers'
 
 export default configureStore({
   reducer: {
-    quizCreation: quizCreation
+    quizReducer: quizReducer
   },
 })
