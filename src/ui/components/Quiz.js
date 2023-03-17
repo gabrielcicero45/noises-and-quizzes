@@ -9,6 +9,7 @@ const Quiz = () => {
   const dispatch = useDispatch();
   const quizData = useSelector((state) => state.quizReducer);
   const [quizTitle, setQuizTitle] = useState(quizData.data.title || "");
+  console.log(quizData.quizes);
   const [quizDescription, setQuizDescription] = useState(
     quizData.data.description || ""
   );
@@ -27,6 +28,7 @@ const Quiz = () => {
       />
 
       <button
+        className="button"
         onClick={() =>
           dispatch(
             questionAdded({
@@ -45,6 +47,7 @@ const Quiz = () => {
       {quizData.saveSuceed && "Quiz Saved !"}
       {quizData.saveFailed.message !== "" && quizData.saveFailed.message}
       <button
+        className="button"
         onClick={() =>
           dispatch(
             quizThunk.postQuiz({

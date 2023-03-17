@@ -32,8 +32,12 @@ const Question = ({ id, title, type }) => {
 
   return (
     <div>
-      <p>Question: {title}</p>
-      <p>Type: {type}</p>
+      {!changeQuestionType && (
+        <>
+          <p>Question: {title}</p>
+          <p>Type: {type}</p>
+        </>
+      )}
 
       {changeQuestionType && (
         <>
@@ -50,13 +54,21 @@ const Question = ({ id, title, type }) => {
         </>
       )}
       {!changeQuestionType && (
-        <button onClick={() => setChangeQuestionType(true)}>Edit</button>
+        <button className="button" onClick={() => setChangeQuestionType(true)}>
+          Edit
+        </button>
       )}
       {!changeQuestionType && (
-        <button onClick={() => dispatch(questionRemoved(id))}>Remove</button>
+        <button
+          className="button button--remove"
+          onClick={() => dispatch(questionRemoved(id))}
+        >
+          Remove
+        </button>
       )}
       {changeQuestionType && (
         <button
+          className="button"
           onClick={() => {
             setChangeQuestionType(false);
             onConfirm(id, { title: questionTitle, type: questionType });
