@@ -10,6 +10,6 @@ const store = configureStore({
   reducer: reducer,
 });
 
-store.dispatch(quizThunk.postQuiz)
+store.dispatch(quizThunk.postQuiz);
 
 export default store;

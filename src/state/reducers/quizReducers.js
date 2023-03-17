@@ -4,7 +4,7 @@ export const quizReducer = (
     data: { title: "", description: "", questions: [] },
     savePending: false,
     saveSuceed: false,
-    saveFailed: {message: ""}
+    saveFailed: { message: "" },
   },
   action
 ) => {
@@ -22,7 +22,6 @@ export const quizReducer = (
       };
 
     case "QUESTION_REMOVED":
-      console.log("Remover", action.payload);
       return {
         ...state,
         data: {
@@ -74,22 +73,20 @@ export const quizReducer = (
       return { ...state, savePending: true };
 
     case "QUIZ_SAVE_SUCEED":
-      console.log("sucesso", action.payload);
       return {
         ...state,
         data: { title: "", description: "", questions: [] },
         savePending: false,
         saveSuceed: true,
-        saveFailed:{message: ""},
+        saveFailed: { message: "" },
       };
 
     case "QUIZ_SAVE_FAILED":
-      console.log('aaa',action.payload)
       return {
         ...state,
         savePending: false,
         saveSuceed: false,
-        saveFailed: {message: action.payload.message},
+        saveFailed: { message: action.payload.message },
       };
     default:
       return state;
