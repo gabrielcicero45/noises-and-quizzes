@@ -1,10 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import quizCreation from "./quizCreation";
+import { quizReducer } from "./reducers/quizReducers";
+import { quizThunk } from "./thunks/quizThunks";
+
+const reducer = {
+  quizReducer: quizReducer,
+};
 
 const store = configureStore({
-  reducer: {
-    quizCreation: quizCreation,
-  },
+  reducer: reducer,
 });
+
+store.dispatch(quizThunk.postQuiz)
 
 export default store;
