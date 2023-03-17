@@ -11,5 +11,5 @@ const store = configureStore({
 });
 
 store.dispatch(quizThunk.postQuiz);
-
+store.dispatch(quizThunk.getQuizes());
 export default store;

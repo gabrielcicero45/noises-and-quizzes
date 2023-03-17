@@ -32,17 +32,15 @@ export const questionTypeChanged = (data) => {
   };
 };
 
-export const quizSavePending = (data) => {
+export const quizSavePending = () => {
   return {
     type: "QUIZ_SAVE_PENDING",
-    payload: data,
   };
 };
 
-export const quizSaveSuceed = (data) => {
+export const quizSaveSuceed = () => {
   return {
     type: "QUIZ_SAVE_SUCEED",
-    payload: data,
   };
 };
 
@@ -52,3 +50,10 @@ export const quizSaveFailed = (data) => {
     payload: data,
   };
 };
+
+export const getAllQuizes = (data) => {
+  return {
+    type: "GET_ALL_QUIZES",
+    payload: data
+  }
+}
