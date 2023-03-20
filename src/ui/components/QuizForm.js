@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { questionAdded } from "../../state/actions/quizActions";
-import { quizThunk } from "../../state/thunks/quizThunks";
+import { postQuiz} from "../../state/thunks/quizThunks";
 import FormInput from "./FormInput";
 import Question from "./Question";
 
-const Quiz = () => {
+const QuizForm = () => {
   const dispatch = useDispatch();
   const quizData = useSelector((state) => state.quizReducer);
   const [quizTitle, setQuizTitle] = useState(quizData.data.title || "");
-  console.log(quizData.quizes);
   const [quizDescription, setQuizDescription] = useState(
     quizData.data.description || ""
   );
@@ -50,7 +49,7 @@ const Quiz = () => {
         className="button"
         onClick={() =>
           dispatch(
-            quizThunk.postQuiz({
+            postQuiz({
               title: quizTitle,
               description: quizDescription,
               questions: quizData.data.questions,
@@ -64,4 +63,4 @@ const Quiz = () => {
   );
 };
 
-export default Quiz;
+export default QuizForm;

@@ -5,7 +5,7 @@ export const quizReducer = (
     savePending: false,
     saveSuceed: false,
     saveFailed: { message: "" },
-    quizes: []
+    quizes: [],
   },
   action
 ) => {
@@ -71,12 +71,12 @@ export const quizReducer = (
       };
 
     case "QUIZ_SAVE_PENDING":
-      return { ...state, savePending: true };
+      return { ...state, savePending: true, saveFailed: { message: "" } };
 
     case "QUIZ_SAVE_SUCEED":
       return {
         ...state,
-        quizCreation:false,
+        quizCreation: false,
         data: { title: "", description: "", questions: [] },
         savePending: false,
         saveSuceed: true,
@@ -91,8 +91,7 @@ export const quizReducer = (
         saveFailed: { message: action.payload.message },
       };
     case "GET_ALL_QUIZES":
-      console.log(action.payload)
-      return {...state, quizes: [...action.payload]}
+      return { ...state, quizes: action.payload };
     default:
       return state;
   }
