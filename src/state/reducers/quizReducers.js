@@ -2,6 +2,10 @@ export const quizReducer = (
   state = {
     quizCreation: false,
     data: { title: "", description: "", questions: [] },
+    savePending: false,
+    saveSuceed: false,
+    saveFailed: { message: "" },
+    quizes: [],
   },
   action
 ) => {
@@ -17,6 +21,21 @@ export const quizReducer = (
           questions: [...state.data.questions, action.payload],
         },
       };
+
+    case "QUESTION_REMOVED":
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          questions: [
+            ...state.data.questions.filter(
+              (question) =>
+                state.data.questions.indexOf(question) !== action.payload
+            ),
+          ],
+        },
+      };
+
     case "QUESTION_TITLE_CHANGED":
       return {
         ...state,
@@ -33,6 +52,7 @@ export const quizReducer = (
           ],
         },
       };
+
     case "QUESTION_TYPE_CHANGED":
       return {
         ...state,
@@ -49,6 +69,29 @@ export const quizReducer = (
           ],
         },
       };
+
+    case "QUIZ_SAVE_PENDING":
+      return { ...state, savePending: true, saveFailed: { message: "" } };
+
+    case "QUIZ_SAVE_SUCEED":
+      return {
+        ...state,
+        quizCreation: false,
+        data: { title: "", description: "", questions: [] },
+        savePending: false,
+        saveSuceed: true,
+        saveFailed: { message: "" },
+      };
+
+    case "QUIZ_SAVE_FAILED":
+      return {
+        ...state,
+        savePending: false,
+        saveSuceed: false,
+        saveFailed: { message: action.payload.message },
+      };
+    case "GET_ALL_QUIZES":
+      return { ...state, quizes: action.payload };
     default:
       return state;
   }
