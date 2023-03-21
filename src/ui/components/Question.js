@@ -5,8 +5,14 @@ import {
   questionTitleChanged,
   questionTypeChanged,
 } from "../../state/actions/quizActions";
+import ActionButtons from "../theme/ActionButtons";
+import Button from "../theme/Button";
+import StyledQuestion from "../theme/StyledQuestion";
 import FormInput from "./FormInput";
 import FormSelect from "./FormSelect";
+import edit from "../assets/edit.svg";
+import remove from "../assets/trash.svg";
+import Icon from "../theme/Icon";
 
 const Question = ({ id, title, type }) => {
   const dispatch = useDispatch();
@@ -17,7 +23,6 @@ const Question = ({ id, title, type }) => {
   const [questionType, setQuestionType] = useState(type || "");
 
   const onConfirm = (questionId, question) => {
-    console.log(questionId);
     if (type !== questionType) {
       dispatch(
         questionTypeChanged({ questionId: questionId, type: question.type })
@@ -31,16 +36,16 @@ const Question = ({ id, title, type }) => {
   };
 
   return (
-    <div>
+    <StyledQuestion>
       {!changeQuestionType && (
-        <>
+        <div>
           <p>Question: {title}</p>
           <p>Type: {type}</p>
-        </>
+        </div>
       )}
 
       {changeQuestionType && (
-        <>
+        <div>
           <FormInput
             labelText={"Question Title"}
             value={questionTitle}
@@ -51,33 +56,31 @@ const Question = ({ id, title, type }) => {
             value={questionType}
             onChange={(e) => setQuestionType(e.target.value)}
           />
-        </>
+        </div>
       )}
-      {!changeQuestionType && (
-        <button className="button" onClick={() => setChangeQuestionType(true)}>
-          Edit
-        </button>
-      )}
-      {!changeQuestionType && (
-        <button
-          className="button button--remove"
-          onClick={() => dispatch(questionRemoved(id))}
-        >
-          Remove
-        </button>
-      )}
+      <ActionButtons>
+        {!changeQuestionType && (
+          <Button type="action" onClick={() => setChangeQuestionType(true)}>
+            <Icon src={edit} /> Edit
+          </Button>
+        )}
+        {!changeQuestionType && (
+          <Button type="danger" onClick={() => dispatch(questionRemoved(id))}>
+            <Icon src={remove} /> Remove
+          </Button>
+        )}
+      </ActionButtons>
       {changeQuestionType && (
-        <button
-          className="button"
+        <Button
           onClick={() => {
             setChangeQuestionType(false);
             onConfirm(id, { title: questionTitle, type: questionType });
           }}
         >
           Confirm
-        </button>
+        </Button>
       )}
-    </div>
+    </StyledQuestion>
   );
 };
 
