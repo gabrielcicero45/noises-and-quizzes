@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { quizCreationStarted } from "../../state/actions/quizActions";
-import QuizesList from "./QuizesList";
 import { getQuizes } from "../../state/thunks/quizThunks";
 import { useEffect } from "react";
+import QuizesList from "./QuizesList";
 import QuizForm from "./QuizForm";
 import Button from "../theme/Button";
 import Wrapper from "../theme/Wrapper";
