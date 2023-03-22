@@ -37,7 +37,7 @@ const Content = () => {
             </Button>
             <QuizesList quizes={quizes} />
           </TextBanner>
-          <Banner></Banner>
+          <Banner />
         </>
       )}
     </Wrapper>
