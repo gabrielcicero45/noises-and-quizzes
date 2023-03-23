@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { questionAdded } from "../../state/actions/quizActions";
 import { postQuiz } from "../../state/thunks/quizThunks";
 import Button from "../theme/Button";
+import QuizFormWrapper from "../theme/QuizFormWrapper";
 import FormInput from "./FormInput";
-import Question from "./Question";
+import QuestionForm from "./QuestionForm";
 
 const QuizForm = () => {
   const dispatch = useDispatch();
@@ -15,20 +16,17 @@ const QuizForm = () => {
   );
 
   return (
-    <>
-      <div>
+    <QuizFormWrapper>
         <FormInput
-          labelText={"Title"}
+          labelText={"Quiz Title"}
           value={quizTitle}
           onChange={(e) => setQuizTitle(e.target.value)}
         />
         <FormInput
-          labelText={"Description"}
+          labelText={"Quiz Description"}
           value={quizDescription}
           onChange={(e) => setQuizDescription(e.target.value)}
         />
-      </div>
-      <div>
         <Button
           onClick={() =>
             dispatch(
@@ -42,7 +40,7 @@ const QuizForm = () => {
           Add question
         </Button>
         {quizData.data.questions.map(({ title, type }, index) => (
-          <Question key={index} id={index} title={title} type={type} />
+          <QuestionForm key={index} id={index} title={title} type={type} />
         ))}
         {quizData.savePending && "Saving ..."}
         {quizData.saveSuceed && "Quiz Saved !"}
@@ -61,8 +59,8 @@ const QuizForm = () => {
         >
           Save quiz
         </Button>
-      </div>
-    </>
+
+    </QuizFormWrapper>
   );
 };
 
