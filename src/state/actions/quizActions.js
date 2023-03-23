@@ -10,6 +10,12 @@ export const quizCreationEnded = () => {
   };
 };
 
+export const goToQuizzesList = () => {
+  return {
+    type: "GO_TO_QUIZZES_LIST"
+  }
+}
+
 export const questionAdded = (data) => {
   return {
     type: "QUESTION_ADDED",

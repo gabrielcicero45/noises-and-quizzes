@@ -1,21 +1,22 @@
 export const quizReducer = (
   state = {
-    quizCreation: false,
+    viewState: "Home",
     data: { title: "", description: "", questions: [] },
-    savePending: false,
-    saveSuceed: false,
-    saveFailed: { message: "" },
+    saveStatus: { message: "" },
     quizes: [],
   },
   action
 ) => {
   switch (action.type) {
     case "QUIZ_CREATION_STARTED":
-      return { ...state, quizCreation: true };
+      return { ...state, viewState: "Quiz Form" };
 
     case "QUIZ_CREATION_ENDED":
-      return { ...state, quizCreation: false };
-      
+      return { ...state, viewState: "Home" };
+    
+    case "GO_TO_QUIZZES_LIST":
+      return { ...state, viewState: "Quizzes List" };
+
     case "QUESTION_ADDED":
       return {
         ...state,
@@ -74,24 +75,19 @@ export const quizReducer = (
       };
 
     case "QUIZ_SAVE_PENDING":
-      return { ...state, savePending: true, saveFailed: { message: "" } };
+      return { ...state, saveStatus: {type:"info", message: "Saving ..." } };
 
     case "QUIZ_SAVE_SUCEED":
       return {
         ...state,
-        quizCreation: false,
         data: { title: "", description: "", questions: [] },
-        savePending: false,
-        saveSuceed: true,
-        saveFailed: { message: "" },
+        saveStatus: {type:"info", message: "Quiz Saved !" },
       };
 
     case "QUIZ_SAVE_FAILED":
       return {
         ...state,
-        savePending: false,
-        saveSuceed: false,
-        saveFailed: { message: action.payload.message },
+        saveStatus: {type:"warning", message: action.payload.message },
       };
     case "GET_ALL_QUIZES":
       return { ...state, quizes: action.payload };
