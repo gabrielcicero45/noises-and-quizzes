@@ -4,6 +4,7 @@ const Input = styled.input`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content:center;
   gap: 8px;
   padding: 4px 8px 4px 16px;
   background: var(--white);

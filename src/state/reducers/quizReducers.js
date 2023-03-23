@@ -13,6 +13,9 @@ export const quizReducer = (
     case "QUIZ_CREATION_STARTED":
       return { ...state, quizCreation: true };
 
+    case "QUIZ_CREATION_ENDED":
+      return { ...state, quizCreation: false };
+      
     case "QUESTION_ADDED":
       return {
         ...state,

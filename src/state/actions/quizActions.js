@@ -4,6 +4,12 @@ export const quizCreationStarted = () => {
   };
 };
 
+export const quizCreationEnded = () => {
+  return {
+    type: "QUIZ_CREATION_ENDED",
+  };
+};
+
 export const questionAdded = (data) => {
   return {
     type: "QUESTION_ADDED",

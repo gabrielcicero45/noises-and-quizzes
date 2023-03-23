@@ -5,7 +5,6 @@ const Select = styled.select`
   flex-direction: row;
   align-items: center;
   gap: 8px;
-  width: 240px;
   padding: 4px 8px 4px 16px;
   background: var(--white);
   border: 1px solid var(--black);

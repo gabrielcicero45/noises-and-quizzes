@@ -1,6 +1,9 @@
 import styled from "styled-components";
+export const HeaderText = styled.span`
+  margin-left: 16px;
+`;
 
-const Header = styled.header`
+export const Header = styled.header`
   display: flex;
   align-items: center;
   font-family: "Red Hat Diplay";
@@ -12,4 +15,3 @@ const Header = styled.header`
   grid-column: span 2;
 `;
 
-export default Header;
