@@ -1,13 +1,13 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { quizCreationEnded } from "../../state/actions/quizActions";
-import QuizForm from "./QuizForm";
-import Wrapper from "../styles/Wrapper";
-import { Header, HeaderText } from "../styles/Header";
-import Home from "./Home";
-import QuizesList from "./QuizesList";
-import Notification from "./Notification";
 import { Button, useColorMode } from "theme-ui";
+import { Header, HeaderText } from "../styles/Header";
+import { quizCreationEnded } from "../../state/actions/quizActions";
+import { useSelector, useDispatch } from "react-redux";
+import Home from "./Home";
+import Notification from "./Notification";
+import QuizesList from "./QuizesList";
+import QuizForm from "./QuizForm";
+import React from "react";
+import Wrapper from "../styles/Wrapper";
 
 const Content = () => {
   const viewState = useSelector(
