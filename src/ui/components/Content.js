@@ -7,12 +7,14 @@ import { Header, HeaderText } from "../styles/Header";
 import Home from "./Home";
 import QuizesList from "./QuizesList";
 import Notification from "./Notification";
+import { Button, useColorMode } from "theme-ui";
 
 const Content = () => {
   const viewState = useSelector(
     (state) => state.quizReducer.viewState
   );
   const dispatch = useDispatch();
+  const [colorMode, setColorMode] = useColorMode();
 
   return (
     <Wrapper>
@@ -21,6 +23,9 @@ const Content = () => {
         <HeaderText onClick={() => dispatch(quizCreationEnded())}>
           Noises & Quizzes
         </HeaderText>
+        <Button onClick={(e) => {
+          setColorMode(colorMode === 'default' ? 'dark' : 'default')
+        }}>Change color</Button>
       </Header>
       {viewState === "Home" && <Home/>}
       {viewState === "Quiz Form" && <QuizForm />}

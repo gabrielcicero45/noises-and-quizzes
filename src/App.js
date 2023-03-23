@@ -1,13 +1,20 @@
 import React, { Fragment } from "react";
-import {GlobalStyle} from "./ui/theme/globalStyles";
+import { GlobalStyle } from "./ui/styles/globalStyles";
 import Content from "./ui/components/Content";
+import { NotificationProvider } from "./application/providers/NotificationsProvider";
+import { ThemeProvider } from "theme-ui";
+import { theme } from "./theme/Theme";
 
 function App() {
   return (
-    <Fragment>
+    <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Content />
-    </Fragment>
+      <NotificationProvider>
+        <Fragment>
+          <Content />
+        </Fragment>
+      </NotificationProvider>
+    </ThemeProvider>
   );
 }
 

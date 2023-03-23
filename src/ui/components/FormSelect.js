@@ -1,6 +1,6 @@
 import React from "react";
-import Label from "../theme/Label";
-import Select from "../theme/Select";
+import Label from "../styles/Label";
+import Select from "../styles/Select";
 
 const FormSelect = ({ labelText, value, onChange }) => {
   return (

@@ -1,16 +1,21 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { Card } from "../styles/Card";
 import Question from "./Question";
 
-const QuizesList = ({ quizes }) => {
+const QuizesList = () => {
+  const quizes = useSelector((state) => state.quizReducer.quizes)
   return (
     <div>
       {quizes.map((quiz) => (
         <div key={quiz.id}>
-          <ul>
-            <li>{quiz.title}</li>
-            <li>{quiz.description}</li>
-            <li>Questões {quiz.questions.map(({id, title, type}) => <Question key={id} id={id} title={title} type={type} action={false}/>)}</li>
-          </ul>
+          <Card>
+            <span>Title:</span>
+            <span>Description:</span>
+            <span>{quiz.title}</span>
+            <span>{quiz.description}</span>
+
+          </Card>
         </div>
       ))}
     </div>

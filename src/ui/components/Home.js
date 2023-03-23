@@ -1,14 +1,12 @@
 import { getQuizes } from "../../state/thunks/quizThunks";
-import { quizCreationStarted } from "../../state/actions/quizActions";
-import { useSelector, useDispatch } from "react-redux";
-import Banner from "../theme/Banner";
-import Button from "../theme/Button";
-import QuizesList from "./QuizesList";
+import { goToQuizzesList, quizCreationStarted } from "../../state/actions/quizActions";
+import { useDispatch } from "react-redux";
+import Banner from "../styles/Banner";
+import Button from "../styles/Button";
 import React, { useEffect } from "react";
-import TextBanner from "../theme/TextBanner";
+import TextBanner from "../styles/TextBanner";
 
 const Home = () => {
-  const quizes = useSelector((state) => state.quizReducer.quizes);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,7 +25,9 @@ const Home = () => {
         <Button onClick={() => dispatch(quizCreationStarted())}>
           Create Quiz !
         </Button>
-        <QuizesList quizes={quizes} />
+        <Button onClick={() => dispatch(goToQuizzesList())}>
+          See Created Quizzes !
+        </Button>
       </TextBanner>
       <Banner></Banner>
     </>

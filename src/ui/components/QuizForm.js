@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { questionAdded } from "../../state/actions/quizActions";
 import { postQuiz } from "../../state/thunks/quizThunks";
-import Button from "../theme/Button";
-import QuizFormWrapper from "../theme/QuizFormWrapper";
+import Button from "../styles/Button";
+import Icon from "../styles/Icon";
+import QuizFormWrapper from "../styles/QuizFormWrapper";
 import FormInput from "./FormInput";
 import QuestionForm from "./QuestionForm";
+import plus from '../assets/plus.svg'
 
 const QuizForm = () => {
   const dispatch = useDispatch();
@@ -37,14 +39,13 @@ const QuizForm = () => {
             )
           }
         >
+          <Icon src={plus} />
           Add question
         </Button>
         {quizData.data.questions.map(({ title, type }, index) => (
           <QuestionForm key={index} id={index} title={title} type={type} />
         ))}
-        {quizData.savePending && "Saving ..."}
-        {quizData.saveSuceed && "Quiz Saved !"}
-        {quizData.saveFailed.message !== "" && quizData.saveFailed.message}
+
         <Button
         type="primary"
           onClick={() =>

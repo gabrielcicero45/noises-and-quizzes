@@ -2,9 +2,9 @@ import {
   questionTitleChanged,
   questionTypeChanged,
 } from "../../state/actions/quizActions";
-import { Card, CardContent } from "../theme/Card";
+import { Card, CardContent } from "../styles/Card";
 import { useDispatch } from "react-redux";
-import Button from "../theme/Button";
+import Button from "../styles/Button";
 import FormInput from "./FormInput";
 import FormSelect from "./FormSelect";
 import React, { useState } from "react";
@@ -52,14 +52,6 @@ const QuestionForm = ({ id, title, type }) => {
         }}
       >
         Confirm
-      </Button>
-      <Button
-        id="question-cancel"
-        onClick={() => {
-          setChangeQuestionType(false);
-        }}
-      >
-        Cancel
       </Button>
     </Card>
   ) : (
