@@ -1,9 +1,16 @@
-import React from 'react'
+import React from "react";
+import { useSelector } from "react-redux";
+import Quiz from "./Quiz";
 
-const QuizesList = ({quizes}) => {
+const QuizesList = () => {
+  const quizes = useSelector((state) => state.quizReducer.quizes)
   return (
-    <div>{quizes.map((quiz) => <p>{quiz.title}</p>)}</div>
-  )
-}
+    <>
+      {quizes.map(({id,title,description,questions}) => (
+        <Quiz key={id} id={id} title={title} description={description} questions={questions}/>
+      ))}
+    </>
+  );
+};
 
-export default QuizesList
+export default QuizesList;

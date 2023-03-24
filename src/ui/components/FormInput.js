@@ -1,13 +1,12 @@
 import React from "react";
-
+import Input from "../styles/Input";
+import Label from "../styles/Label";
 const FormInput = ({ labelText, value, onChange }) => {
   return (
-    <div>
-      <label htmlFor="">
+      <Label htmlFor="">
         {labelText}:
-        <input value={value || ""} onChange={onChange} />
-      </label>
-    </div>
+        <Input value={value || ""} onChange={onChange} />
+      </Label>
   );
 };
 

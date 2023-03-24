@@ -1,83 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
-import {
-  questionRemoved,
-  questionTitleChanged,
-  questionTypeChanged,
-} from "../../state/actions/quizActions";
-import FormInput from "./FormInput";
-import FormSelect from "./FormSelect";
+import { Card, CardContent } from "../styles/Card";
+import ActionButtons from "../styles/ActionButtons";
+import Icon from "../styles/Icon";
+import edit from "../assets/edit.svg";
+import remove from "../assets/trash.svg";
+import { questionRemoved } from "../../state/actions/quizActions";
+import Button from "../styles/Button";
 
-const Question = ({ id, title, type }) => {
+const Question = ({ id, title, type, actions }) => {
   const dispatch = useDispatch();
-  const [changeQuestionType, setChangeQuestionType] = useState(
-    title === "" || type === ""
-  );
-  const [questionTitle, setQuestionTitle] = useState(title || "");
-  const [questionType, setQuestionType] = useState(type || "");
-
-  const onConfirm = (questionId, question) => {
-    console.log(questionId);
-    if (type !== questionType) {
-      dispatch(
-        questionTypeChanged({ questionId: questionId, type: question.type })
-      );
-    }
-    if (title !== questionTitle) {
-      dispatch(
-        questionTitleChanged({ questionId: questionId, title: question.title })
-      );
-    }
-  };
-
   return (
-    <div>
-      {!changeQuestionType && (
-        <>
-          <p>Question: {title}</p>
-          <p>Type: {type}</p>
-        </>
-      )}
+    <Card>
+      <span id="question-id">#Question {id}</span>
 
-      {changeQuestionType && (
-        <>
-          <FormInput
-            labelText={"Question Title"}
-            value={questionTitle}
-            onChange={(e) => setQuestionTitle(e.target.value)}
-          />
-          <FormSelect
-            labelText={"Question Type"}
-            value={questionType}
-            onChange={(e) => setQuestionType(e.target.value)}
-          />
-        </>
+      <CardContent>
+        <p>Question: {title}</p>
+        <p>Type: {type}</p>
+      </CardContent>
+      {actions && (
+        <ActionButtons>
+          <Button type="action" onClick={() => actions.changeQuestion(true)}>
+            <Icon src={edit} /> Edit
+          </Button>
+          <Button type="danger" onClick={() => dispatch(questionRemoved(id))}>
+            <Icon src={remove} /> Remove
+          </Button>
+        </ActionButtons>
       )}
-      {!changeQuestionType && (
-        <button className="button" onClick={() => setChangeQuestionType(true)}>
-          Edit
-        </button>
-      )}
-      {!changeQuestionType && (
-        <button
-          className="button button--remove"
-          onClick={() => dispatch(questionRemoved(id))}
-        >
-          Remove
-        </button>
-      )}
-      {changeQuestionType && (
-        <button
-          className="button"
-          onClick={() => {
-            setChangeQuestionType(false);
-            onConfirm(id, { title: questionTitle, type: questionType });
-          }}
-        >
-          Confirm
-        </button>
-      )}
-    </div>
+    </Card>
   );
 };
 

@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { questionAdded } from "../../state/actions/quizActions";
-import { postQuiz} from "../../state/thunks/quizThunks";
+import { postQuiz } from "../../state/thunks/quizThunks";
+import Button from "../styles/Button";
+import Icon from "../styles/Icon";
+import QuizFormWrapper from "../styles/QuizFormWrapper";
 import FormInput from "./FormInput";
-import Question from "./Question";
+import QuestionForm from "./QuestionForm";
+import plus from '../assets/plus.svg'
 
 const QuizForm = () => {
   const dispatch = useDispatch();
@@ -14,52 +18,50 @@ const QuizForm = () => {
   );
 
   return (
-    <div>
-      <FormInput
-        labelText={"Title"}
-        value={quizTitle}
-        onChange={(e) => setQuizTitle(e.target.value)}
-      />
-      <FormInput
-        labelText={"Description"}
-        value={quizDescription}
-        onChange={(e) => setQuizDescription(e.target.value)}
-      />
+    <QuizFormWrapper>
+        <FormInput
+          labelText={"Quiz Title"}
+          value={quizTitle}
+          onChange={(e) => setQuizTitle(e.target.value)}
+        />
+        <FormInput
+          labelText={"Quiz Description"}
+          value={quizDescription}
+          onChange={(e) => setQuizDescription(e.target.value)}
+        />
+        <Button
+          onClick={() =>
+            dispatch(
+              questionAdded({
+                title: "",
+                type: "",
+              })
+            )
+          }
+        >
+          <Icon src={plus} />
+          Add question
+        </Button>
+        {quizData.data.questions.map(({ title, type }, index) => (
+          <QuestionForm key={index} id={index} title={title} type={type} />
+        ))}
 
-      <button
-        className="button"
-        onClick={() =>
-          dispatch(
-            questionAdded({
-              title: "",
-              type: "",
-            })
-          )
-        }
-      >
-        Add question
-      </button>
-      {quizData.data.questions.map(({ title, type }, index) => (
-        <Question key={index} id={index} title={title} type={type} />
-      ))}
-      {quizData.savePending && "Saving ..."}
-      {quizData.saveSuceed && "Quiz Saved !"}
-      {quizData.saveFailed.message !== "" && quizData.saveFailed.message}
-      <button
-        className="button"
-        onClick={() =>
-          dispatch(
-            postQuiz({
-              title: quizTitle,
-              description: quizDescription,
-              questions: quizData.data.questions,
-            })
-          )
-        }
-      >
-        Save quiz
-      </button>
-    </div>
+        <Button
+        type="primary"
+          onClick={() =>
+            dispatch(
+              postQuiz({
+                title: quizTitle,
+                description: quizDescription,
+                questions: quizData.data.questions,
+              })
+            )
+          }
+        >
+          Save quiz
+        </Button>
+
+    </QuizFormWrapper>
   );
 };
 
