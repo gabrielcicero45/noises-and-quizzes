@@ -10,10 +10,8 @@ const QuizesList = () => {
       {quizes.map((quiz) => (
         <div key={quiz.id}>
           <Card>
-            <span>Title:</span>
-            <span>Description:</span>
-            <span>{quiz.title}</span>
-            <span>{quiz.description}</span>
+            <span><strong>Title: </strong>{quiz.title}</span>
+            <span><strong>Description:</strong> {quiz.description}</span>
 
           </Card>
         </div>

@@ -7,12 +7,11 @@ const Input = styled.input`
   justify-content:center;
   gap: 8px;
   padding: 4px 8px 4px 16px;
-  background: var(--white);
-  border: 1px solid var(--black);
+  border: 1px solid var(--theme-ui-colors-primary);
   border-radius: 4px;
   &:focus {
     border: 0;
-    outline: 1px solid var(--green);
+    outline: 1px solid var(--theme-ui-colors-secondary);
   }
 `;
 

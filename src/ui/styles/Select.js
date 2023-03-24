@@ -6,11 +6,11 @@ const Select = styled.select`
   align-items: center;
   gap: 8px;
   padding: 4px 8px 4px 16px;
-  background: var(--white);
-  border: 1px solid var(--black);
+  background: #FFF;
+  border: 1px solid var(--theme-ui-colors-primary);
   border-radius: 4px;
   &:active {
-    outline: 2px solid var(--green);
+    outline: 1px solid var(--theme-ui-colors-secondary);
   }
 `;
 

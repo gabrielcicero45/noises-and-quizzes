@@ -35,7 +35,7 @@ const Button = styled.button`
           background-color: var(--theme-ui-colors-primary);
           &:hover {
             background-color: var(--theme-ui-colors-secondary);
-            color: var(--theme-ui-colors-primaryText);
+            color: var(--theme-ui-colors-secondaryText);
             img {
               filter: invert(0%) sepia(1%) saturate(3%) hue-rotate(326deg)
                 brightness(97%) contrast(104%);

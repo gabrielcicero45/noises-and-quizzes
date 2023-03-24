@@ -12,10 +12,10 @@ export const AlertText = styled.span`
 `;
 
 export const Alert = styled.div`
-  position: absolute;
+  position: fixed;
   top: 15vh;
   right: 1vw;
-  background-color: var(--white);
+  background-color: var(--theme-ui-colors-background);
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -27,7 +27,7 @@ export const Alert = styled.div`
     switch (props.type) {
       case "warning":
         return css`
-          border: 2px solid var(--danger);
+          border: 2px solid var(--theme-ui-colors-danger);
           img {
             height: 32px;
             width: 32px;
@@ -38,7 +38,7 @@ export const Alert = styled.div`
         `;
       default:
         return css`
-          border: 2px solid var(--black);
+          border: 2px solid var(--theme-ui-colors-primary);
           img {
             height: 32px;
             width: 32px;
