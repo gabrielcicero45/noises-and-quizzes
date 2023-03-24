@@ -17,7 +17,6 @@ export const Card = styled.div`
     border: 3px solid var(--theme-ui-colors-secondary);
   }
   #question-id {
-    color: var(--grey);
     grid-area: id;
   }
   #question-confirm {
